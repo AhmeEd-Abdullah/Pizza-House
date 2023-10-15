@@ -32,13 +32,13 @@ window.onscroll = () => {
         ? scrollToTop.classList.add("show")
         : scrollToTop.classList.remove("show");
     // About Us Section
-    if (window.scrollY > aboutUs.offsetTop - 300) {
+    if (window.scrollY > aboutUs.offsetTop - 400) {
         aboutUsLists.forEach((li) => {
             li.classList.add("show");
         });
     }
     // Our Team Section
-    if (window.scrollY > ourTeam.offsetTop - 300) {
+    if (window.scrollY > ourTeam.offsetTop - 400) {
         ourTeamMembers.classList.add("show");
     }
 };
