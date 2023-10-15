@@ -1,0 +1,1078 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../layout/grid";
+
+// The Main Header Of Website
+// .main-header {
+//     position: relative;
+//     z-index: 999;
+//     position: fixed;
+//     top: 0;
+//     width: 100%;
+//     height: 65px;
+//     padding: 5px 0;
+//     background-color: white;
+//     @include media(meduim) {
+//         height: 139.5px;
+//         padding: 0;
+//         &::before {
+//             content: "";
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             width: 100%;
+//             height: 100%;
+//             background-color: #f5f5f5;
+//         }
+//         &.scrolling-header {
+//             height: 90px;
+//         }
+//     }
+//     .container {
+//         position: relative;
+//         z-index: 1000;
+//         .content {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             @include media(meduim) {
+//                 gap: 100px;
+//             }
+//             .logo {
+//                 display: flex;
+//                 align-items: center;
+//                 .mobile-navbar {
+//                     @media (max-width: $min-meduim) {
+//                         width: 30px;
+//                         height: 26px;
+//                         margin-right: 17px;
+//                         cursor: pointer;
+//                     }
+//                     > span {
+//                         display: block;
+//                         width: 100%;
+//                         height: 4px;
+//                         background-color: black;
+//                         @include prefixer(transition, 0.5s, webkit moz ms o);
+//                         &:not(:last-child) {
+//                             margin-bottom: 7px;
+//                         }
+//                     }
+//                     &.active > span {
+//                         background-color: $main-color;
+//                     }
+//                 }
+//                 .image {
+//                     width: 140px;
+//                     @include media(small) {
+//                         width: 150px;
+//                     }
+//                     @include media(meduim) {
+//                         width: auto;
+//                         position: relative;
+//                         &::before {
+//                             content: "";
+//                             position: absolute;
+//                             z-index: -1;
+//                             background-color: white;
+//                             width: 250%;
+//                             height: 200%;
+//                             right: -20%;
+//                             bottom: -15%;
+//                             transform: skewX(30deg);
+//                             -webkit-transform: skewX(30deg);
+//                             -moz-transform: skewX(30deg);
+//                             -ms-transform: skewX(30deg);
+//                             -o-transform: skewX(30deg);
+//                         }
+//                     }
+//                     img {
+//                         max-width: 100%;
+//                         object-fit: contain;
+//                     }
+//                 }
+//             }
+//             .navbar {
+//                 flex: 1;
+//                 @media (max-width: $min-meduim) {
+//                     display: flex;
+//                     justify-content: flex-end;
+//                 }
+//                 .navbar-aside {
+//                     padding: 0 10px;
+//                     @extend %flex-end;
+//                     @include prefixer(transition, 0.3s linear, webkit moz ms o);
+//                     @media (max-width: $min-meduim) {
+//                         flex-direction: column;
+//                         justify-content: center;
+//                         gap: 25px;
+//                         position: fixed;
+//                         width: 280px;
+//                         height: 220px;
+//                         top: 65px;
+//                         left: -280px;
+//                         background-color: #ffffff;
+//                         &.show {
+//                             left: 0;
+//                         }
+//                     }
+//                     @include media(meduim) {
+//                         height: 50px;
+//                         padding: 10px 0;
+//                         position: relative;
+//                         &::before {
+//                             content: "";
+//                             position: absolute;
+//                             z-index: -1;
+//                             background-color: white;
+//                             width: 150%;
+//                             height: 100%;
+//                             top: 0;
+//                             right: -45%;
+//                             transform: skewX(30deg);
+//                             -webkit-transform: skewX(30deg);
+//                             -moz-transform: skewX(30deg);
+//                             -ms-transform: skewX(30deg);
+//                             -o-transform: skewX(30deg);
+//                         }
+//                         &.hidden {
+//                             display: none;
+//                         }
+//                         > div:not(:first-child) {
+//                             margin-left: 50px;
+//                         }
+//                     }
+//                 }
+//                 .navbar-main {
+//                     @include media(meduim) {
+//                         display: flex;
+//                         justify-content: flex-end;
+//                         align-items: center;
+//                         padding: 10px 0;
+//                     }
+//                     ul {
+//                         padding: 0;
+//                         @include prefixer(
+//                             transition,
+//                             0.3s linear,
+//                             webkit moz ms o
+//                         );
+//                         @media (max-width: $min-meduim) {
+//                             position: fixed;
+//                             width: 280px;
+//                             height: calc(100vh - 285px);
+//                             top: 285px;
+//                             left: -280px;
+//                             background-color: #ffffff;
+//                             &.show {
+//                                 left: 0;
+//                             }
+//                         }
+//                         @include media(meduim) {
+//                             display: flex;
+//                             gap: 35px;
+//                         }
+//                         li {
+//                             a {
+//                                 display: block;
+//                                 height: 70px;
+//                                 line-height: 70px;
+//                                 position: relative;
+//                                 font-size: 19px;
+//                                 font-weight: bold;
+//                                 @media (max-width: $min-meduim) {
+//                                     text-indent: 20px;
+//                                     height: 50px;
+//                                     line-height: 50px;
+//                                     @include prefixer(
+//                                         transition,
+//                                         all 0.3s,
+//                                         webkit moz ms o
+//                                     );
+//                                     &.active,
+//                                     &:hover {
+//                                         color: white;
+//                                         background-color: $main-color;
+//                                     }
+//                                 }
+//                                 @include media(meduim) {
+//                                     &.active::before {
+//                                         content: "";
+//                                         position: absolute;
+//                                         width: 100%;
+//                                         height: 5px;
+//                                         bottom: -10px;
+//                                         left: 0;
+//                                         background-color: $main-color;
+//                                     }
+//                                     &:hover::after {
+//                                         content: "";
+//                                         position: absolute;
+//                                         background-color: $main-color;
+//                                         width: 10%;
+//                                         height: 5px;
+//                                         bottom: -10px;
+//                                         opacity: 0;
+//                                         @include prefixer(
+//                                             animation,
+//                                             links-animation 0.6s both,
+//                                             webkit moz ms
+//                                         );
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+//                     .toggel-menu {
+//                         width: 7px;
+//                         cursor: pointer;
+//                         @include prefixer(
+//                             transition,
+//                             all 0.3s,
+//                             webkit moz ms o
+//                         );
+//                         @include media(meduim) {
+//                             width: 40px;
+//                             margin-left: 70px;
+//                         }
+//                         &.hidden {
+//                             width: 0;
+//                             margin-left: 0;
+//                         }
+//                         > span {
+//                             position: relative;
+//                             display: block;
+//                             background-color: $main-color;
+//                             width: 100%;
+//                             height: 7px;
+//                             @include media(meduim) {
+//                                 background-color: black;
+//                                 height: 4px;
+//                             }
+//                             &:nth-child(1),
+//                             &:nth-child(2) {
+//                                 margin-bottom: 7px;
+//                             }
+//                             &:first-child::before {
+//                                 @include prefixer(
+//                                     transition,
+//                                     width 0.3s ease,
+//                                     webkit moz ms o
+//                                 );
+//                             }
+//                             &:nth-child(2)::before {
+//                                 @include prefixer(
+//                                     transition,
+//                                     width 0.2s ease 0.1s,
+//                                     webkit moz ms o
+//                                 );
+//                             }
+//                             &:nth-child(3)::before {
+//                                 @include prefixer(
+//                                     transition,
+//                                     width 0.2s ease 0.2s,
+//                                     webkit moz ms o
+//                                 );
+//                             }
+//                             &::before {
+//                                 content: "";
+//                                 position: absolute;
+//                                 top: 0;
+//                                 left: 0;
+//                                 width: 0;
+//                                 height: 100%;
+//                                 background-color: $yellow-color;
+//                             }
+//                         }
+//                         &:hover span::before {
+//                             width: 100%;
+//                         }
+//                         .toggel-pictures {
+//                             @extend %flex-center;
+//                             align-items: flex-start;
+//                             position: fixed;
+//                             width: 260px;
+//                             right: -260px;
+//                             height: 101%;
+//                             top: 0;
+//                             padding: 25px;
+//                             background-color: white;
+//                             box-shadow: 0 0 2px rgb(194, 193, 193);
+//                             @include prefixer(
+//                                 transition,
+//                                 0.4s,
+//                                 webkit moz ms o
+//                             );
+//                             @include media(small) {
+//                                 width: 350px;
+//                                 right: -350px;
+//                             }
+//                             @include media(large) {
+//                                 width: 450px;
+//                                 right: -450px;
+//                             }
+//                             &.show {
+//                                 right: 0;
+//                             }
+//                             .toggel-content {
+//                                 flex: 1;
+//                                 .title {
+//                                     display: flex;
+//                                     align-items: center;
+//                                     .close-icon {
+//                                         position: relative;
+//                                         width: 40px;
+//                                         height: 40px;
+//                                         @include prefixer(
+//                                             transform,
+//                                             rotate(45deg),
+//                                             webkit moz ms o
+//                                         );
+//                                         &.apperence {
+//                                             .first {
+//                                                 height: 100%;
+//                                             }
+//                                             .second {
+//                                                 width: 100%;
+//                                             }
+//                                         }
+//                                         span {
+//                                             position: absolute;
+//                                             background-color: black;
+//                                             &.first {
+//                                                 width: 4px;
+//                                                 height: 0;
+//                                                 top: 0;
+//                                                 left: 50%;
+//                                                 @include prefixer(
+//                                                     transform,
+//                                                     translateX(-50%),
+//                                                     webkit moz ms o
+//                                                 );
+//                                                 @include prefixer(
+//                                                     transition,
+//                                                     0.2s,
+//                                                     webkit moz ms o
+//                                                 );
+//                                             }
+//                                             &.second {
+//                                                 width: 0;
+//                                                 height: 4px;
+//                                                 top: 50%;
+//                                                 left: 0;
+//                                                 @include prefixer(
+//                                                     transform,
+//                                                     translateY(-50%),
+//                                                     webkit moz ms o
+//                                                 );
+//                                                 @include prefixer(
+//                                                     transition,
+//                                                     0.2s 0.2s,
+//                                                     webkit moz ms o
+//                                                 );
+//                                             }
+//                                         }
+//                                     }
+//                                     h5 {
+//                                         flex: 1;
+//                                         text-align: center;
+//                                         font-size: 30px;
+//                                         letter-spacing: 2px;
+//                                         font-style: italic;
+//                                         font-weight: bold;
+//                                     }
+//                                 }
+//                                 .pictures {
+//                                     display: grid;
+//                                     grid-template-columns: repeat(2, 48%);
+//                                     gap: 15px;
+//                                     position: relative;
+//                                     &::before,
+//                                     &::after {
+//                                         content: "";
+//                                         position: absolute;
+//                                         left: -12px;
+//                                         top: 0;
+//                                         width: 4px;
+//                                         @include prefixer(
+//                                             border-radius,
+//                                             3px,
+//                                             webkit moz ms o
+//                                         );
+//                                     }
+//                                     &::before {
+//                                         height: 100%;
+//                                         background-color: #e1e1e1;
+//                                     }
+//                                     &::after {
+//                                         height: 85%;
+//                                         background-color: $yellow-color;
+//                                     }
+//                                     .picture {
+//                                         display: flex;
+//                                         overflow: hidden;
+//                                         position: relative;
+//                                         &::before {
+//                                             content: "";
+//                                             @include overlay;
+//                                             background-color: rgba(
+//                                                 92,
+//                                                 66,
+//                                                 222,
+//                                                 0.44
+//                                             );
+//                                             z-index: 1;
+//                                             opacity: 0;
+//                                             @include prefixer(
+//                                                 transition,
+//                                                 0.5s,
+//                                                 webkit moz ms o
+//                                             );
+//                                         }
+//                                         &::after {
+//                                             content: "\f002";
+//                                             position: absolute;
+//                                             font-family: "Font Awesome 5 Free";
+//                                             font-weight: 600;
+//                                             font-size: 0;
+//                                             color: white;
+//                                             z-index: 2;
+//                                             top: 50%;
+//                                             left: 50%;
+//                                             @include prefixer(
+//                                                 transform,
+//                                                 translate(-50%, -50%),
+//                                                 webkit moz ms o
+//                                             );
+//                                             @include prefixer(
+//                                                 transition,
+//                                                 0.3s,
+//                                                 webkit moz ms o
+//                                             );
+//                                         }
+//                                         &:hover::before {
+//                                             opacity: 1;
+//                                         }
+//                                         &:hover::after {
+//                                             font-size: 35px;
+//                                         }
+//                                         img {
+//                                             width: 100%;
+//                                             height: 100%;
+//                                             @include prefixer(
+//                                                 transform,
+//                                                 scale(1.1),
+//                                                 webkit moz ms o
+//                                             );
+//                                             @include prefixer(
+//                                                 transition,
+//                                                 0.5s,
+//                                                 webkit moz ms o
+//                                             );
+//                                         }
+//                                         &:hover img {
+//                                             @include prefixer(
+//                                                 transform,
+//                                                 scale(1),
+//                                                 webkit moz ms o
+//                                             );
+//                                         }
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// Popup Pictuer
+.popup-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #414141eb;
+    z-index: 2000;
+    .popup-pictuer {
+        padding: 40px 15px;
+        position: relative;
+        img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .close-span {
+            position: absolute;
+            background-color: $yellow-color;
+            font-size: 30px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            top: 20px;
+            left: 50%;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            @include prefixer(transform, translateX(-50%), webkit moz ms o);
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+        }
+    }
+    .pictures-control {
+        position: absolute;
+        width: 100%;
+        padding: 10px;
+        left: 0;
+        bottom: 0;
+        background-color: black;
+        @extend %flex-center;
+        gap: 10px;
+        .picture-in-control {
+            width: 100px;
+            height: 80px;
+            cursor: pointer;
+            @include prefixer(transition, 0.1s, webkit moz ms o);
+            &:hover {
+                outline: 2px solid white;
+            }
+            &.active {
+                outline: 3px solid $main-color;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+// Section Header
+.section-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Asfalto";
+    font-size: 45px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    word-spacing: 3px;
+    @include media(mobile) {
+        font-size: 26px;
+        line-height: 1.1;
+        font-weight: 400;
+        margin-bottom: 30px;
+    }
+}
+
+// Main Header Links Animation
+@include animation(links-animation) {
+    5% {
+        opacity: 1;
+        left: 0;
+    }
+    30% {
+        opacity: 1;
+        width: 10%;
+        left: 90%;
+    }
+    100% {
+        opacity: 1;
+        left: 0;
+        width: 100%;
+    }
+}
+
+// The Main Header Of Website
+.main-header {
+    position: relative;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 65px;
+    padding: 5px 0;
+    background-color: white;
+    @media (min-width: 992.1px) {
+        height: 139.5px;
+        padding: 0;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+        }
+        &.scrolling-header {
+            height: 90px;
+        }
+    }
+    .container {
+        position: relative;
+        z-index: 1000;
+        padding-left: 25px;
+        padding-right: 25px;
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include media(meduim) {
+                gap: 100px;
+            }
+            .logo {
+                display: flex;
+                align-items: center;
+                .mobile-navbar {
+                    @media (max-width: $min-meduim) {
+                        width: 30px;
+                        height: 26px;
+                        margin-right: 17px;
+                        cursor: pointer;
+                    }
+                    > span {
+                        display: block;
+                        width: 100%;
+                        height: 4px;
+                        background-color: black;
+                        @include prefixer(transition, 0.5s, webkit moz ms o);
+                        &:not(:last-child) {
+                            margin-bottom: 7px;
+                        }
+                    }
+                    &.active > span {
+                        background-color: $main-color;
+                    }
+                }
+                .image {
+                    width: 140px;
+                    @include media(small) {
+                        width: 150px;
+                    }
+                    @media (min-width: 992.1px) {
+                        width: auto;
+                        position: relative;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            z-index: -1;
+                            background-color: white;
+                            width: 250%;
+                            height: 200%;
+                            right: -20%;
+                            bottom: -15%;
+                            transform: skewX(30deg);
+                            -webkit-transform: skewX(30deg);
+                            -moz-transform: skewX(30deg);
+                            -ms-transform: skewX(30deg);
+                            -o-transform: skewX(30deg);
+                        }
+                    }
+                    img {
+                        max-width: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+            .navbar {
+                flex: 1;
+                @media (max-width: $min-meduim) {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+                .navbar-aside {
+                    @extend %flex-end;
+                    height: 50px;
+                    padding: 10px 0;
+                    position: relative;
+                    @include prefixer(transition, 0.3s linear, webkit moz ms o);
+                    @media (max-width: $min-meduim) {
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: 25px;
+                        position: fixed;
+                        padding: 0 10px;
+                        width: 280px;
+                        height: 220px;
+                        top: 65px;
+                        left: -280px;
+                        background-color: #ffffff;
+                        &.show {
+                            left: 0;
+                        }
+                    }
+                    @media (min-width: 992.1px) {
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            z-index: -1;
+                            background-color: white;
+                            width: 150%;
+                            height: 100%;
+                            top: 0;
+                            right: -45%;
+                            transform: skewX(30deg);
+                            -webkit-transform: skewX(30deg);
+                            -moz-transform: skewX(30deg);
+                            -ms-transform: skewX(30deg);
+                            -o-transform: skewX(30deg);
+                        }
+                        &.hidden {
+                            display: none;
+                        }
+                        > div:not(:first-child) {
+                            margin-left: 50px;
+                        }
+                    }
+                }
+                .navbar-main {
+                    @include media(meduim) {
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        padding: 10px 0;
+                    }
+                    ul {
+                        @include prefixer(
+                            transition,
+                            0.3s linear,
+                            webkit moz ms o
+                        );
+                        @media (max-width: $min-meduim) {
+                            position: fixed;
+                            width: 280px;
+                            height: calc(100vh - 285px);
+                            top: 285px;
+                            left: -280px;
+                            background-color: #ffffff;
+                            &.show {
+                                left: 0;
+                            }
+                        }
+                        @media (min-width: 992.1px) {
+                            display: flex;
+                            gap: 35px;
+                        }
+                        li {
+                            a {
+                                display: block;
+                                height: 70px;
+                                line-height: 70px;
+                                position: relative;
+                                font-size: 19px;
+                                font-weight: bold;
+                                @media (max-width: $min-meduim) {
+                                    text-indent: 20px;
+                                    height: 50px;
+                                    line-height: 50px;
+                                    @include prefixer(
+                                        transition,
+                                        all 0.3s,
+                                        webkit moz ms o
+                                    );
+                                    &.active,
+                                    &:hover {
+                                        color: white;
+                                        background-color: $main-color;
+                                    }
+                                }
+                                @media (min-width: 992.1px) {
+                                    &.active::before {
+                                        content: "";
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 5px;
+                                        bottom: -10px;
+                                        left: 0;
+                                        background-color: $main-color;
+                                    }
+                                    &:hover::after {
+                                        content: "";
+                                        position: absolute;
+                                        background-color: $main-color;
+                                        width: 10%;
+                                        height: 5px;
+                                        bottom: -10px;
+                                        opacity: 0;
+                                        @include prefixer(
+                                            animation,
+                                            links-animation 0.6s both,
+                                            webkit moz ms
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .toggel-menu {
+                        width: 7px;
+                        cursor: pointer;
+                        @include prefixer(
+                            transition,
+                            all 0.3s,
+                            webkit moz ms o
+                        );
+                        @include media(meduim) {
+                            width: 40px;
+                            margin-left: 70px;
+                        }
+                        &.hidden {
+                            width: 0;
+                            margin-left: 0;
+                        }
+                        > span {
+                            position: relative;
+                            display: block;
+                            background-color: $main-color;
+                            width: 100%;
+                            height: 7px;
+                            @include media(meduim) {
+                                background-color: black;
+                                height: 4px;
+                            }
+                            &:nth-child(1),
+                            &:nth-child(2) {
+                                margin-bottom: 7px;
+                            }
+                            &:first-child::before {
+                                @include prefixer(
+                                    transition,
+                                    width 0.3s ease,
+                                    webkit moz ms o
+                                );
+                            }
+                            &:nth-child(2)::before {
+                                @include prefixer(
+                                    transition,
+                                    width 0.2s ease 0.1s,
+                                    webkit moz ms o
+                                );
+                            }
+                            &:nth-child(3)::before {
+                                @include prefixer(
+                                    transition,
+                                    width 0.2s ease 0.2s,
+                                    webkit moz ms o
+                                );
+                            }
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 0;
+                                height: 100%;
+                                background-color: $yellow-color;
+                            }
+                        }
+                        &:hover span::before {
+                            width: 100%;
+                        }
+                        .toggel-pictures {
+                            @extend %flex-center;
+                            align-items: flex-start;
+                            position: fixed;
+                            width: 260px;
+                            right: -260px;
+                            height: 101%;
+                            top: 0;
+                            padding: 25px;
+                            background-color: white;
+                            box-shadow: 0 0 2px rgb(194, 193, 193);
+                            @include prefixer(
+                                transition,
+                                0.4s,
+                                webkit moz ms o
+                            );
+                            @include media(small) {
+                                width: 350px;
+                                right: -350px;
+                            }
+                            @include media(large) {
+                                width: 400px;
+                                right: -400px;
+                            }
+                            &.show {
+                                right: 0;
+                            }
+                            .toggel-content {
+                                flex: 1;
+                                .title {
+                                    display: flex;
+                                    align-items: center;
+                                    .close-icon {
+                                        position: relative;
+                                        width: 40px;
+                                        height: 40px;
+                                        @include prefixer(
+                                            transform,
+                                            rotate(45deg),
+                                            webkit moz ms o
+                                        );
+                                        &.apperence {
+                                            .first {
+                                                height: 100%;
+                                            }
+                                            .second {
+                                                width: 100%;
+                                            }
+                                        }
+                                        span {
+                                            position: absolute;
+                                            background-color: black;
+                                            &.first {
+                                                width: 4px;
+                                                height: 0;
+                                                top: 0;
+                                                left: 50%;
+                                                @include prefixer(
+                                                    transform,
+                                                    translateX(-50%),
+                                                    webkit moz ms o
+                                                );
+                                                @include prefixer(
+                                                    transition,
+                                                    0.2s,
+                                                    webkit moz ms o
+                                                );
+                                            }
+                                            &.second {
+                                                width: 0;
+                                                height: 4px;
+                                                top: 50%;
+                                                left: 0;
+                                                @include prefixer(
+                                                    transform,
+                                                    translateY(-50%),
+                                                    webkit moz ms o
+                                                );
+                                                @include prefixer(
+                                                    transition,
+                                                    0.2s 0.2s,
+                                                    webkit moz ms o
+                                                );
+                                            }
+                                        }
+                                    }
+                                    h5 {
+                                        flex: 1;
+                                        text-align: center;
+                                        font-size: 30px;
+                                        letter-spacing: 2px;
+                                        font-style: italic;
+                                        font-weight: bold;
+                                    }
+                                }
+                                .pictures {
+                                    display: grid;
+                                    grid-template-columns: repeat(2, 48%);
+                                    gap: 15px;
+                                    position: relative;
+                                    &::before,
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        left: -12px;
+                                        top: 0;
+                                        width: 4px;
+                                        @include prefixer(
+                                            border-radius,
+                                            3px,
+                                            webkit moz ms o
+                                        );
+                                    }
+                                    &::before {
+                                        height: 100%;
+                                        background-color: #e1e1e1;
+                                    }
+                                    &::after {
+                                        height: 85%;
+                                        background-color: $yellow-color;
+                                    }
+                                    .picture {
+                                        display: flex;
+                                        overflow: hidden;
+                                        position: relative;
+                                        &::before {
+                                            content: "";
+                                            @include overlay;
+                                            background-color: rgba(
+                                                92,
+                                                66,
+                                                222,
+                                                0.44
+                                            );
+                                            z-index: 1;
+                                            opacity: 0;
+                                            @include prefixer(
+                                                transition,
+                                                0.5s,
+                                                webkit moz ms o
+                                            );
+                                        }
+                                        &::after {
+                                            content: "\f002";
+                                            position: absolute;
+                                            font-family: "Font Awesome 5 Free";
+                                            font-weight: 600;
+                                            font-size: 0;
+                                            color: white;
+                                            z-index: 2;
+                                            top: 50%;
+                                            left: 50%;
+                                            @include prefixer(
+                                                transform,
+                                                translate(-50%, -50%),
+                                                webkit moz ms o
+                                            );
+                                            @include prefixer(
+                                                transition,
+                                                0.3s,
+                                                webkit moz ms o
+                                            );
+                                        }
+                                        &:hover::before {
+                                            opacity: 1;
+                                        }
+                                        &:hover::after {
+                                            font-size: 35px;
+                                        }
+                                        img {
+                                            width: 100%;
+                                            height: 100%;
+                                            @include prefixer(
+                                                transform,
+                                                scale(1.1),
+                                                webkit moz ms o
+                                            );
+                                            @include prefixer(
+                                                transition,
+                                                0.5s,
+                                                webkit moz ms o
+                                            );
+                                        }
+                                        &:hover img {
+                                            @include prefixer(
+                                                transform,
+                                                scale(1),
+                                                webkit moz ms o
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

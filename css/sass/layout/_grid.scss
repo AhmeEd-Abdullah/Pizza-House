@@ -1,0 +1,32 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+
+// place Holders
+%flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+%flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    @include media(meduim) {
+        width: 970px;
+    }
+    @include media(large) {
+        width: 1160px;
+    }
+}
+
+section {
+    margin-bottom: 55px;
+}

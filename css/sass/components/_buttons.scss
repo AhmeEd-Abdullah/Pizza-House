@@ -1,0 +1,59 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+
+.global-button {
+    width: 270px;
+    padding: 25px 0;
+    letter-spacing: 2px;
+    color: black;
+    background-color: $yellow-color;
+    margin-top: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    @include prefixer(border-radius, 3px, webkit moz ms o);
+    @include prefixer(transition, 1s, webkit moz ms o);
+    &:hover {
+        background-color: $green-color !important;
+        color: white;
+    }
+    @include media(mobile) {
+        width: 230px;
+        padding: 17px 0;
+    }
+}
+
+.scroll-to-top {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 27px;
+    position: fixed;
+    z-index: 100;
+    right: 40px;
+    bottom: -100px;
+    cursor: pointer;
+    background-color: $yellow-color;
+    @include prefixer(border-radius, 50%, webkit moz ms o);
+    @include prefixer(transition, 0.5s, webkit moz ms o);
+    @media (max-width: 580px) {
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    &:hover {
+        background-color: $main-color;
+        color: white;
+    }
+    &.show {
+        bottom: 40px;
+        @media (max-width: 580px) {
+            bottom: 10px;
+        }
+    }
+}

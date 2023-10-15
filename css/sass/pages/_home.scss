@@ -1,0 +1,1093 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../layout/grid";
+
+// Start Swiper Section
+.swiper-section {
+    height: 90vh;
+    overflow: hidden;
+    .swipers {
+        position: relative;
+        min-height: 100%;
+        .swiper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50%;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            @include prefixer(transition, 0.8s, webkit moz ms o);
+            &.swiper1 {
+                .container {
+                    h1 {
+                        @include prefixer(
+                            transform,
+                            translateY(70%),
+                            webkit moz ms o
+                        );
+                        opacity: 0;
+                    }
+                    p {
+                        @include prefixer(
+                            transform,
+                            translateX(-50%),
+                            webkit moz ms o
+                        );
+                        opacity: 0;
+                    }
+                }
+            }
+            &.swiper2 {
+                .container {
+                    h1 {
+                        @include prefixer(
+                            transform,
+                            translateY(-70%),
+                            webkit moz ms o
+                        );
+                        opacity: 0;
+                    }
+                    p {
+                        @include prefixer(
+                            transform,
+                            translateX(50%),
+                            webkit moz ms o
+                        );
+                        opacity: 0;
+                    }
+                }
+            }
+            &.show {
+                opacity: 1;
+                z-index: 2;
+                .container.show {
+                    h1,
+                    p,
+                    button {
+                        @include prefixer(
+                            transition,
+                            1s ease 0.3s,
+                            webkit moz ms o
+                        );
+                        @include prefixer(
+                            transform,
+                            translate(0, 0),
+                            webkit moz ms o
+                        );
+                        opacity: 1;
+                    }
+                }
+            }
+            .container {
+                color: white;
+                overflow: hidden;
+                @include media(mobile) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                @include media(small) {
+                    padding-left: 60px;
+                }
+                @include media(meduim) {
+                    padding-left: 100px;
+                }
+                h1 {
+                    font-size: 28px;
+                    letter-spacing: 5px;
+                    margin: 0;
+                    font-family: "Asfalto";
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    @media (min-width: 400px) {
+                        font-size: 40px;
+                    }
+                    @include media(mobile) {
+                        text-align: center;
+                    }
+                    @include media(small) {
+                        font-size: 60px;
+                    }
+                    @include media(meduim) {
+                        font-size: 90px;
+                    }
+                }
+                p {
+                    margin: 25px 0 0;
+                    font-size: 18px;
+                    line-height: 1.6;
+                    letter-spacing: 2px;
+                    @include media(mobile) {
+                        text-align: center;
+                    }
+                    @include media(meduim) {
+                        max-width: 50%;
+                    }
+                }
+                .global-button {
+                    opacity: 0;
+                    @include prefixer(
+                        transform,
+                        translateY(100%),
+                        webkit moz ms o
+                    );
+                }
+            }
+        }
+        .side-slider {
+            position: absolute;
+            z-index: 3;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 250px;
+            height: 80px;
+            top: 50%;
+            cursor: pointer;
+            display: flex;
+            @include prefixer(transition, 0.5s, webkit moz ms o);
+            &:hover {
+                background-color: $yellow-color;
+                height: 100px;
+            }
+            @media (max-width: 992px) {
+                display: none;
+            }
+            &.left {
+                left: -180px;
+                flex-direction: row-reverse;
+                @include prefixer(
+                    transform,
+                    translateY(-50%) skewX(10deg),
+                    webkit moz ms o
+                );
+                &:hover {
+                    left: -10px;
+                }
+            }
+            &.right {
+                right: -180px;
+                @include prefixer(
+                    transform,
+                    translateY(-50%) skewX(-10deg),
+                    webkit moz ms o
+                );
+                &:hover {
+                    right: -10px;
+                }
+            }
+            .picture {
+                width: 170px;
+                height: 100%;
+                background-size: cover;
+                background-position: 50%;
+            }
+            .arrow {
+                @extend %flex-center;
+                width: 80px;
+                height: 100%;
+                color: white;
+                font-size: 35px;
+            }
+        }
+    }
+}
+// End Swiper Section
+
+// Start Our Menu Section
+.our-menu {
+    .container {
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 25px;
+            @include media(mobile) {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 15px;
+            }
+            .menu {
+                position: relative;
+                overflow: hidden;
+                @include prefixer(transition, transform 1.5s, webkit moz ms o);
+                &::before {
+                    content: "";
+                    @include overlay;
+                    z-index: 1;
+                    background-color: rgba(51, 51, 51, 0.55);
+                }
+                &.m1,
+                &.m3 {
+                    transform-origin: left bottom;
+                    @include prefixer(
+                        transform,
+                        rotateX(90deg),
+                        webkit moz ms o
+                    );
+                }
+                &.m4,
+                &.m6 {
+                    transform-origin: left top;
+                    @include prefixer(
+                        transform,
+                        rotateX(90deg),
+                        webkit moz ms o
+                    );
+                }
+                &.m2 {
+                    transform-origin: left top;
+                    @include prefixer(
+                        transform,
+                        rotateX(90deg),
+                        webkit moz ms o
+                    );
+                }
+                &.m5 {
+                    transform-origin: left bottom;
+                    @include prefixer(
+                        transform,
+                        rotateX(90deg),
+                        webkit moz ms o
+                    );
+                }
+                &.show {
+                    @include prefixer(transform, rotateX(0), webkit moz ms o);
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    @include prefixer(transform, scale(1.1), webkit moz ms o);
+                    @include prefixer(transition, 0.5s, webkit moz ms o);
+                }
+                &:hover img {
+                    @include prefixer(transform, scale(1), webkit moz ms o);
+                }
+                .content {
+                    position: absolute;
+                    z-index: 2;
+                    top: 50%;
+                    left: 50%;
+                    @include prefixer(
+                        transform,
+                        translate(-50%, -50%),
+                        webkit moz ms o
+                    );
+                    .icon,
+                    span {
+                        color: white;
+                        @include prefixer(transition, 0.5s, webkit moz ms o);
+                    }
+                    .icon {
+                        width: 80px;
+                        height: 80px;
+                        line-height: 80px;
+                        margin: auto;
+                        text-align: center;
+                        font-size: 45px;
+                        background-color: $main-color;
+                        outline: 5px solid rgba(255, 255, 255, 0.35);
+                        @include prefixer(border-radius, 50%, webkit moz ms o);
+                        @include media(mobile) {
+                            width: 65px;
+                            height: 65px;
+                            line-height: 65px;
+                            font-size: 35px;
+                        }
+                    }
+                    span {
+                        display: block;
+                        font-size: 35px;
+                        margin-top: 35px;
+                    }
+                }
+                &:hover .icon {
+                    background-color: $yellow-color;
+                    color: black;
+                }
+                &:hover span {
+                    color: $yellow-color;
+                }
+            }
+        }
+    }
+}
+// End Our Menu Section
+
+// Start Our Atmosphere Section
+.our-atmosphere {
+    article {
+        position: relative;
+        background-image: url("/images/bg-3.jpg");
+        background-position: 50%;
+        background-repeat: no-repeat;
+        object-fit: contain;
+        padding: 80px 0;
+        overflow: hidden;
+        &::before {
+            content: "";
+            @include overlay;
+            background-color: rgba(51, 51, 51, 0.45);
+        }
+        .container {
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            @include media(small) {
+                justify-content: flex-end;
+            }
+            .content {
+                color: white;
+                @include media(small) {
+                    width: 50%;
+                }
+                @include media(meduim) {
+                    width: 41%;
+                }
+                h2,
+                p,
+                span {
+                    letter-spacing: 1px;
+                    text-transform: capitalize;
+                }
+                h2 {
+                    margin: 0 0 25px;
+                    font-family: "Asfalto";
+                    font-size: 40px;
+                    opacity: 0;
+                    @include prefixer(
+                        transition,
+                        transform 1.5s,
+                        webkit moz ms o
+                    );
+                    @include prefixer(
+                        transform,
+                        translateX(30%),
+                        webkit moz ms o
+                    );
+                    @include media(small) {
+                        font-size: 50px;
+                    }
+                    &.show {
+                        @include prefixer(
+                            transform,
+                            translateX(0),
+                            webkit moz ms o
+                        );
+                        opacity: 1;
+                    }
+                }
+                p {
+                    font-size: 1.2rem;
+                    line-height: 1.5;
+                }
+                .founder {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .s1 {
+                        width: 0;
+                        height: 4px;
+                        background-color: $yellow-color;
+                        @include prefixer(transition, 1.5s, webkit moz ms o);
+                        &.show {
+                            width: 50px;
+                        }
+                    }
+                    .s2 {
+                        color: rgba(255, 255, 255, 0.3);
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+        }
+    }
+}
+// End Our Atmosphere Section
+
+// Start Selected Pizzas Section
+.selected-pizzas {
+    .our-products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+        gap: 30px;
+        opacity: 0;
+        @include prefixer(transform, translateX(-30%), webkit moz ms o);
+        @include prefixer(transition, 2s, webkit moz ms o);
+        .box {
+            @extend %flex-center;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                top: 50%;
+                left: 50%;
+                @include prefixer(
+                    transform,
+                    translate(-50%, -50%),
+                    webkit moz ms o
+                );
+                @include prefixer(border-radius, 50%, webkit moz ms o);
+                background-color: rgb(96, 70, 182);
+            }
+            &:hover::before {
+                @include prefixer(
+                    animation,
+                    overlay 0.3s linear,
+                    webkit moz ms o
+                );
+            }
+            &::after {
+                content: "";
+                @include overlay;
+                background-color: #ffffffdd;
+                @include prefixer(transition, 0.5s, webkit moz ms o);
+                opacity: 0;
+            }
+            &:hover::after {
+                opacity: 1;
+            }
+            > {
+                .new,
+                .sale {
+                    position: absolute;
+                    padding: 7px 25px;
+                    left: 0;
+                    top: 0;
+                    font-size: 13px;
+                    font-weight: bold;
+                    z-index: 1;
+                    &::before {
+                        content: "";
+                        @include overlay;
+                        left: -5px;
+                        z-index: -1;
+                        @include prefixer(
+                            transform,
+                            skewx(-20deg),
+                            webkit moz ms o
+                        );
+                    }
+                }
+                .new {
+                    color: white;
+                    &::before {
+                        background-color: $main-color;
+                    }
+                }
+                .sale {
+                    &::before {
+                        background-color: $yellow-color;
+                    }
+                }
+            }
+            .product {
+                width: fit-content;
+                position: relative;
+                @include media(mobile) {
+                    text-align: center;
+                }
+                &::before,
+                &::after {
+                    position: absolute;
+                    cursor: pointer;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    z-index: 2;
+                    width: 100%;
+                    left: 0;
+                    padding: 15px 0;
+                    letter-spacing: 1px;
+                    background-color: $yellow-color;
+                    @include prefixer(transition, 0.4s, webkit moz ms o);
+                    opacity: 0;
+                }
+                &::before {
+                    content: "add to cart";
+                    top: 28%;
+                    @include prefixer(
+                        transform,
+                        translateX(15%),
+                        webkit moz ms o
+                    );
+                }
+                &::after {
+                    content: "view product";
+                    bottom: 28%;
+                    @include prefixer(
+                        transform,
+                        translateX(-15%),
+                        webkit moz ms o
+                    );
+                }
+                .content {
+                    .evaluation {
+                        margin-top: 20px;
+                        color: $yellow-color;
+                        .gray-color {
+                            color: gray;
+                        }
+                    }
+                    .pizza-name {
+                        margin: 15px 0 10px;
+                        font-size: 20px;
+                    }
+                    span {
+                        color: $main-color;
+                        del {
+                            color: gray;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            &:hover .product::before,
+            &:hover .product::after {
+                @include prefixer(transform, translate(0, 0), webkit moz ms o);
+                opacity: 1;
+            }
+        }
+    }
+}
+@include animation(overlay) {
+    // Selected Pizzas Section Animation
+    90% {
+        width: 150%;
+        height: 150%;
+    }
+    100% {
+        width: 150%;
+        height: 150%;
+        opacity: 0;
+    }
+}
+// End Selected Pizzas Section
+
+// Start Our Sale Section
+.our-sale {
+    @extend .our-atmosphere;
+    article {
+        background-image: url("/images/bg-4.jpg");
+        .container {
+            .content {
+                .founder {
+                    margin: 40px 0;
+                    span:last-child {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+// End Our Sale Section
+
+// Start Our Resturant Section
+.our-resturant {
+    .resturant-gallery {
+        overflow: hidden;
+        @include media(small) {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(6, 1fr);
+        }
+        @media (min-width: 480px) and (max-width: $max-mobile) {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(8, 190px);
+        }
+        .box {
+            position: relative;
+            overflow: hidden;
+            @include prefixer(transition, transform 2s, webit moz ms o);
+            &.pic1 {
+                @include prefixer(
+                    transform,
+                    translateX(-100%),
+                    webkit mo z ms o
+                );
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 1 / 1 / 4 / span 3;
+                }
+                @include media(small) {
+                    grid-area: 1 / 1 / 2 / 3;
+                }
+                @include media(large) {
+                    grid-area: 1 / 1 / 3 / 2;
+                }
+            }
+            &.pic2 {
+                transform-origin: right center;
+                @include prefixer(transform, rotateY(90deg), webkit mo z ms o);
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 1 / 4 / 3 / span 3;
+                }
+                @include media(small) {
+                    grid-area: 1 / 3 / 2 / span 4;
+                }
+                @include media(large) {
+                    grid-area: 1 / 2 / 3 / 4;
+                }
+            }
+            &.pic3 {
+                @include prefixer(
+                    transform,
+                    translateY(-100%),
+                    webkit mo z ms o
+                );
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 3 / 4 / 5 / span 3;
+                }
+                @include media(small) {
+                    grid-area: 2 / 1 / 3 / 3;
+                }
+                @include media(large) {
+                    grid-area: 1 / 4 / 2 / 5;
+                }
+            }
+            &.pic4 {
+                transform-origin: left bottom;
+                @include prefixer(transform, rotateX(90deg), webkit mo z ms o);
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 4 / 1 / 6 / span 3;
+                }
+                @include media(small) {
+                    grid-area: 2 / 3 / 3 / span 4;
+                }
+                @include media(large) {
+                    grid-area: 1 / 5 / 2 / span 2;
+                }
+            }
+            &.pic5 {
+                @include prefixer(
+                    transform,
+                    translateY(100%),
+                    webkit mo z ms o
+                );
+                @media (max-width: $min-large) {
+                    grid-area: 3 / 1 / 4 / span 2;
+                }
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 5 / 4 / 7 / span 3;
+                }
+            }
+            &.pic6 {
+                transform-origin: right bottom;
+                @include prefixer(transform, rotateY(90deg), webkit mo z ms o);
+                @media (max-width: $min-large) {
+                    grid-area: 3 / 3 / 4 / span 2;
+                }
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 6 / 1 / 8 / span 3;
+                }
+            }
+            &.pic7 {
+                @include prefixer(
+                    transform,
+                    translateX(100%),
+                    webkit mo z ms o
+                );
+                @media (max-width: $min-large) {
+                    grid-area: 3 / 5 / 4 / span 2;
+                }
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    grid-area: 7 / 4 / 9 / span 3;
+                }
+            }
+            &.show {
+                @include prefixer(
+                    transform,
+                    rotate(0) translate(0, 0),
+                    webkit mo z ms o
+                );
+            }
+            img {
+                width: 100%;
+                @include prefixer(transition, 0.5s, webit moz ms o);
+                @media (min-width: 480px) and (max-width: $max-mobile) {
+                    height: calc(100% - 76.8px);
+                }
+                @include media(small) {
+                    height: 100%;
+                }
+            }
+            .info {
+                position: relative;
+                bottom: 4px;
+                padding: 15px 10px;
+                background-color: #f5f5f5;
+                @include prefixer(transition, 0.5s, webit moz ms o);
+                @include media(small) {
+                    padding: 30px 10px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    @include prefixer(
+                        transform,
+                        translateY(100%),
+                        webit moz ms o
+                    );
+                }
+                p {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    @include prefixer(transition, 0.3s, webit moz ms o);
+                    &:hover {
+                        color: $main-color;
+                    }
+                    @include media(small) {
+                        letter-spacing: 1px;
+                    }
+                }
+                span {
+                    color: $green-color;
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+            @media (max-width: 480px) {
+                margin-bottom: 10px;
+            }
+            @include media(small) {
+                max-height: 70vh;
+                &:hover .info {
+                    @include prefixer(transform, translateY(0), webit moz ms o);
+                }
+                &:hover img {
+                    @include prefixer(
+                        transform,
+                        translateY(-16%),
+                        webit moz ms o
+                    );
+                }
+            }
+        }
+    }
+}
+// End Our Resturant Section
+
+// Start Favorite Pizza Section
+.favorite-pizza {
+    article {
+        .content {
+            width: 85%;
+            margin: 0 auto;
+            background-color: #b7b6b632;
+            padding: 20px 10px;
+            @include prefixer(border-radius, 4px, webkit moz ms o);
+            @include media(small) {
+                width: 700px;
+                padding: 20px;
+            }
+            @include media(meduim) {
+                width: 800px;
+            }
+            form {
+                margin-bottom: 20px;
+                label {
+                    display: block;
+                    padding: 10px 5px;
+                    color: $main-color;
+                    font-size: 18px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+                #pizza-type,
+                input[type="submit"] {
+                    font-size: 18px;
+                    @include prefixer(border-radius, 4px, webkit moz ms o);
+                }
+                #pizza-type {
+                    padding: 10px;
+                    width: 55%;
+                    border: none;
+                    &:focus {
+                        outline: 2px solid $yellow-color;
+                    }
+                    @include media(small) {
+                        width: 70%;
+                        padding: 10px 20px;
+                    }
+                }
+                input[type="submit"] {
+                    padding: 10px 10px;
+                    background-color: $yellow-color;
+                    border: none;
+                    float: right;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                    cursor: pointer;
+                    @include media(small) {
+                        padding: 10px 30px;
+                    }
+                }
+            }
+            .pizza-details {
+                padding: 15px 20px;
+                background-color: #ababab3f;
+                font-size: 18px;
+                text-transform: capitalize;
+                font-weight: bold;
+                line-height: 1.4;
+                @include prefixer(border-radius, 4px, webkit moz ms o);
+                .pizza-info {
+                    padding: 10px 20px;
+                    background-color: $main-color;
+                    color: white;
+                    word-break: break-word;
+                    line-height: 1.7;
+                    @include prefixer(border-radius, 4px, webkit moz ms o);
+                    &:not(:last-of-type) {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+// End Favorite Pizza Section
+
+// Start User Table Section
+.user-table {
+    .container {
+        form {
+            @media (min-width: 580px) {
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+                padding: 50px 40px;
+            }
+            @media (min-width: 580px) and (max-width: $max-mobile) {
+                margin: auto;
+                width: 510px;
+            }
+            // .user-info {
+            //     display: flex;
+            //     flex-wrap: wrap;
+            //     gap: 20px;
+            //     [type="text"],
+            //     [type="email"],
+            //     select,
+            //     textarea {
+            //         flex: 1;
+            //         padding: 20px;
+            //         border: 1px solid rgba(179, 176, 176, 0.645);
+            //     }
+            //     [type="text"]:focus,
+            //     [type="email"]:focus,
+            //     select:focus,
+            //     textarea:focus {
+            //         outline: 1px solid $yellow-color;
+            //     }
+            //     [type="email"] {
+            //         @media (max-width: $min-small) {
+            //             flex: none;
+            //             width: 100%;
+            //         }
+            //     }
+            //     select {
+            //         color: #777777;
+            //         @media (max-width: $min-meduim) {
+            //             flex: none;
+            //             width: 100%;
+            //         }
+            //     }
+            //     textarea {
+            //         min-width: 100%;
+            //         min-height: 60px;
+            //         max-height: 200px;
+            //         height: 150px;
+            //     }
+            //     [type="submit"] {
+            //         padding: 23px 35px;
+            //         background-color: $yellow-color;
+            //         border: none;
+            //         letter-spacing: 2px;
+            //         font-weight: bolder;
+            //         @include prefixer(transition, 0.5s, webkit moz ms o);
+            //         &:hover {
+            //             background-color: $green-color;
+            //             color: white;
+            //         }
+            //         @include media(mobile) {
+            //             width: 100%;
+            //             margin: 15px auto 0;
+            //         }
+            //         @media (min-width: 580px) and (max-width: $max-mobile) {
+            //             width: fit-content;
+            //         }
+            //     }
+            //     .hint {
+            //         @extend %flex-center;
+            //         gap: 20px;
+            //         color: #777777;
+            //         margin-left: 40px;
+            //         @include media(mobile) {
+            //             margin-left: 0;
+            //             width: 100%;
+            //         }
+            //         i {
+            //             opacity: 0.3;
+            //             font-size: 40px;
+            //         }
+            //         span {
+            //             font-size: 23px;
+            //             font-style: italic;
+            //             font-weight: 300;
+            //         }
+            //     }
+            // }
+        }
+    }
+}
+// End User Table Section
+
+// Start Our Advantages Section
+.our-advantages {
+    .container {
+        .advantages {
+            overflow: hidden;
+            margin: auto;
+            @media (min-width: 580px) and (max-width: $max-mobile) {
+                width: 510px;
+            }
+            .content {
+                display: flex;
+                justify-content: space-around;
+                padding: 5px 0;
+                @include prefixer(transition, 0.5s, webkit moz ms o);
+                @media (max-width: $min-large) {
+                    width: 200%;
+                }
+                @media (max-width: $min-meduim) {
+                    width: 400%;
+                }
+                @include media(large) {
+                    @include prefixer(
+                        transform,
+                        translateX(0) !important,
+                        webkit moz ms o
+                    );
+                }
+                .box {
+                    width: calc(98% / 4);
+                    padding: 50px 15px;
+                    text-align: center;
+                    height: fit-content;
+                    @include prefixer(transition, 0.5s, webkit moz ms o);
+                    @media (max-width: $min-meduim) {
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+                    }
+                    .icon {
+                        width: 110px;
+                        margin: auto;
+                        position: relative;
+                        &::before {
+                            content: "";
+                            @include overlay;
+                            border-left: 4px solid #f5f5f5;
+                            border-right: 4px solid #f5f5f5;
+                            @include prefixer(
+                                transition,
+                                0.3s,
+                                webkit moz ms o
+                            );
+                            box-sizing: border-box;
+                        }
+                        i {
+                            font-size: 45px;
+                            color: $main-color;
+                            text-align: center;
+                            @include prefixer(
+                                transition,
+                                0.3s,
+                                webkit moz ms o
+                            );
+                        }
+                    }
+                    h3 {
+                        margin: 50px 0 25px;
+                        font-size: 25px;
+                        font-weight: normal;
+                        @include prefixer(transition, 0.3s, webkit moz ms o);
+                    }
+                    p {
+                        font-size: 17px;
+                        line-height: 1.8;
+                        margin: 0;
+                        color: #777777;
+                    }
+                    &:hover {
+                        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+                        .icon {
+                            i {
+                                color: $green-color;
+                            }
+                            &::before {
+                                @include prefixer(
+                                    transform,
+                                    rotate(180deg),
+                                    webkit moz ms o
+                                );
+                                border-color: $green-color;
+                            }
+                        }
+                        h3 {
+                            color: $green-color;
+                        }
+                    }
+                }
+            }
+        }
+        .swiper-btns {
+            width: fit-content;
+            margin: 40px auto 0;
+            .four-btns,
+            .two-btns {
+                span {
+                    display: inline-block;
+                    padding: 3px 25px;
+                    background-color: #e7e6e6;
+                    cursor: pointer;
+                    @include prefixer(border-radius, 4px, webkit moz ms o);
+                    @include prefixer(transition, 0.5s, webkit moz ms o);
+                    &:not(:last-child) {
+                        margin-right: 15px;
+                    }
+                    &:hover {
+                        background-color: black;
+                    }
+                    &.active {
+                        background-color: $yellow-color;
+                    }
+                    @include media(mobile) {
+                        padding: 3px 15px;
+                    }
+                }
+            }
+            .four-btns {
+                @include media(meduim) {
+                    display: none;
+                }
+            }
+            .two-btns {
+                display: none;
+                @media (min-width: $min-meduim) and (max-width: $min-large) {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+// End Our Advantages Section

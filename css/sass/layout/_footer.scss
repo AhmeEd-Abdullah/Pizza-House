@@ -1,0 +1,210 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../layout/grid";
+@use "../layout/headers";
+
+footer {
+    background-color: #38393b;
+    overflow: hidden;
+    .container {
+        padding-right: 40px;
+        padding-left: 40px;
+        @include media(mobile) {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .row-1 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 50px 0;
+            .column {
+                min-width: 250px;
+                &:not(:last-child) {
+                    flex: 1;
+                }
+                @include media(mobile) {
+                    min-width: 100%;
+                    text-align: center;
+                }
+                h2 {
+                    color: white;
+                    font-size: 25px;
+                    letter-spacing: 1px;
+                }
+                ul {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    padding: 0;
+                    max-height: 120px;
+                    @include media(mobile) {
+                        max-height: 110px;
+                    }
+                    @media (max-width: 580px) {
+                        flex-direction: row;
+                        justify-content: center;
+                    }
+                    li {
+                        padding: 10px;
+                        a {
+                            color: #cdd7d8;
+                            @include prefixer(
+                                transition,
+                                0.3s,
+                                webkit moz ms o
+                            );
+                            &:hover {
+                                color: $yellow-color;
+                            }
+                        }
+                    }
+                }
+                form {
+                    label {
+                        display: block;
+                        color: rgba(255, 255, 255, 0.4);
+                        letter-spacing: 1px;
+                        margin-bottom: 20px;
+                        line-height: 1.5;
+                    }
+                    .sending {
+                        display: flex;
+                        align-items: center;
+                        @media (max-width: 580px) {
+                            flex-direction: column;
+                            gap: 20px;
+                        }
+                        input {
+                            height: 60px;
+                            width: calc(100% - 60px);
+                            padding: 0 20px;
+                            font-size: 17px;
+                            background-color: rgb(86 87 88);
+                            border: none;
+                            outline: none;
+                            color: #cdd7d8;
+                            @media (max-width: 580px) {
+                                width: 100%;
+                            }
+                            &::placeholder {
+                                color: white;
+                            }
+                            &:focus {
+                                border: 1px solid white;
+                            }
+                        }
+                        span {
+                            display: flex;
+                            align-items: center;
+                            height: 60px;
+                            width: 60px;
+                            padding: 0 15px;
+                            background-color: $yellow-color;
+                            i {
+                                font-size: 28px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .row-2 {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px 70px;
+            padding: 50px 0;
+            position: relative;
+            @include media(mobile) {
+                justify-content: center;
+            }
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                width: 200%;
+                height: 1px;
+                left: -30%;
+                background-color: #777;
+            }
+            &::before {
+                top: 0;
+            }
+            &::after {
+                bottom: 0;
+            }
+            @include media(large) {
+                justify-content: space-between;
+            }
+            .column {
+                color: white;
+                &:first-child {
+                    display: flex;
+                    align-items: center;
+                    gap: 30px 80px;
+                    font-size: 25px;
+                    div:last-child {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                    @include media(mobile) {
+                        flex-direction: column;
+                    }
+                }
+                &:last-child {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 25px 50px;
+                    @include media(mobile) {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                    @media (max-width: 580px) {
+                        flex-direction: row;
+                        justify-content: center;
+                    }
+                    .phone,
+                    .location {
+                        i {
+                            padding: 10px;
+                            background-color: rgba(255, 255, 255, 0.1);
+                        }
+                        &:hover {
+                            color: $yellow-color;
+                        }
+                    }
+                    .social-links {
+                        a {
+                            padding: 10px 15px;
+                            &:nth-child(2) {
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .row-3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            text-align: center;
+            color: #777;
+            line-height: 1.5;
+            @include media(mobile) {
+                flex-direction: column;
+                row-gap: 20px;
+            }
+            p {
+                margin: 0;
+            }
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
+}

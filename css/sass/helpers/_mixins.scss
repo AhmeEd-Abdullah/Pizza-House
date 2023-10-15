@@ -1,0 +1,53 @@
+@use "../helpers/variables" as *;
+
+
+// Media Mixin
+@mixin media($breakpoint){
+    @if $breakpoint == mobile {
+        @media (max-width: $max-mobile) {
+            @content;
+        }
+    } @else if $breakpoint == small {
+        @media (min-width: $min-small) {
+            @content;
+        }
+    } @else if $breakpoint == meduim {
+        @media (min-width: $min-meduim) {
+            @content;
+        }
+    } @else if $breakpoint == large {
+        @media (min-width: $min-large) {
+            @content;
+        }
+    }
+};
+
+// Prefixes Mixin
+@mixin prefixer($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+        #{"-" + $prefix + "-" + $property}: $value;
+    }
+    #{$property}: $value;
+};
+
+// Animation Mixin
+@mixin animation($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+};
+
+// Overlay
+@mixin overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 

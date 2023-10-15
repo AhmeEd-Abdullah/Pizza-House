@@ -1,0 +1,181 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../layout/grid";
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    @include prefixer(box-sizing, border-box, webkit moz ms o);
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin-top: 65px !important; // To be after the Main Header
+    @media (min-width: 992.1px) {
+        margin-top: 139.5px !important; // To be after the Main Header
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.phone,
+.location {
+    @include prefixer(transition, 0.3s, webkit moz ms o);
+    cursor: pointer;
+    &:hover {
+        color: $main-color;
+    }
+    i {
+        margin-right: 8px;
+    }
+}
+
+.social-links {
+    a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        padding: 5px;
+        background-color: #ebebeb;
+        font-size: 17px;
+        @include prefixer(border-radius, 2px, webkit moz ms o);
+        &:nth-child(2) {
+            margin: 0 5px;
+        }
+        @include prefixer(transition, 0.5s, webkit moz ms o);
+        &:hover {
+            color: white;
+            background-color: $main-color;
+        }
+    }
+}
+
+// The First Section In About and Contact Pages
+.shared-main-section {
+    .picture {
+        padding: 100px 0;
+        background-image: url("/images/download.jpg");
+        background-position: 50% 50%;
+        object-fit: contain;
+        h2 {
+            color: white;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 80px;
+                height: 5px;
+                left: 50%;
+                bottom: -30px;
+                background-color: rgba(255, 255, 255, 0.4);
+                @include prefixer(transform, translateX(-50%), webkit moz ms o);
+            }
+        }
+    }
+    .links {
+        @extend %flex-center;
+        gap: 10px;
+        padding: 25px 0;
+        background-color: #f3f3f3;
+        font-size: 14px;
+        letter-spacing: 1px;
+        a {
+            color: #777;
+            @include prefixer(transition, 0.3s, webkit moz ms o);
+            &:hover {
+                color: $main-color;
+            }
+        }
+        span {
+            font-weight: bold;
+        }
+    }
+}
+
+// In Home And Contact Pages
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    [type="text"],
+    [type="email"],
+    select,
+    textarea {
+        flex: 1;
+        padding: 20px;
+        border: 1px solid rgba(179, 176, 176, 0.645);
+    }
+    [type="text"],
+    [type="email"],
+    select {
+        @media (max-width: $min-small) {
+            flex: none;
+            width: 100%;
+        }
+    }
+    [type="text"]:focus,
+    [type="email"]:focus,
+    select:focus,
+    textarea:focus {
+        outline: 1px solid $yellow-color;
+    }
+    select {
+        color: #777777;
+    }
+    textarea {
+        min-width: 100%;
+        min-height: 60px;
+        max-height: 200px;
+        height: 150px;
+    }
+    [type="submit"] {
+        padding: 23px 35px;
+        background-color: $yellow-color;
+        border: none;
+        letter-spacing: 2px;
+        font-weight: bolder;
+        @include prefixer(transition, 0.5s, webkit moz ms o);
+        &:hover {
+            background-color: $green-color;
+            color: white;
+        }
+        @include media(mobile) {
+            width: 100%;
+            margin: 15px auto 0;
+        }
+        @media (min-width: 580px) and (max-width: $max-mobile) {
+            width: fit-content;
+        }
+    }
+    .hint {
+        @extend %flex-center;
+        gap: 20px;
+        color: #777777;
+        margin-left: 40px;
+        @include media(mobile) {
+            margin-left: 0;
+            width: 100%;
+        }
+        i {
+            opacity: 0.3;
+            font-size: 40px;
+        }
+        span {
+            font-size: 23px;
+            font-style: italic;
+            font-weight: 300;
+        }
+    }
+}
