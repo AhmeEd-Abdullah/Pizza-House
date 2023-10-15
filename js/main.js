@@ -42,13 +42,6 @@ let closeSpan = document.createElement("span");
 closeSpan.appendChild(document.createTextNode("x"));
 closeSpan.className = "close-span";
 
-// Set Height of Overlay
-function adjustOverlayHeight() {
-    let urlBarHeight = window.innerHeight - document.documentElement.clientHeight;
-    popupOverlay.style.height = `calc(100vh - ${urlBarHeight}px)`;
-}
-window.addEventListener("load", adjustOverlayHeight);
-window.addEventListener("resize", adjustOverlayHeight);
 
 // Create Overlay When Toggel Picture is clicked
 toggelPicture.forEach((picture) => {
