@@ -966,6 +966,10 @@ a {
   font-size: 35px;
 }
 
+.our-menu .container {
+  padding-left: 25px;
+  padding-right: 25px;
+}
 .our-menu .container .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -973,8 +977,7 @@ a {
 }
 @media (max-width: 767px) {
   .our-menu .container .products {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   }
 }
 .our-menu .container .products .menu {
@@ -1033,28 +1036,33 @@ a {
   transition: 0.5s;
 }
 .our-menu .container .products .menu .content .icon {
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
+  width: 65px;
+  height: 65px;
+  line-height: 65px;
+  font-size: 35px;
   margin: auto;
   text-align: center;
-  font-size: 45px;
   background-color: #6046b6;
   outline: 5px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
 }
 @media (max-width: 767px) {
   .our-menu .container .products .menu .content .icon {
-    width: 65px;
-    height: 65px;
-    line-height: 65px;
-    font-size: 35px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 25px;
   }
 }
 .our-menu .container .products .menu .content span {
   display: block;
-  font-size: 35px;
-  margin-top: 35px;
+  font-size: 25px;
+  margin-top: 30px;
+}
+@media (min-width: 768px) {
+  .our-menu .container .products .menu .content span {
+    font-size: 30px;
+  }
 }
 .our-menu .container .products .menu:hover .icon {
   background-color: #ffe745;

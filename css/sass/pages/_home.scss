@@ -199,13 +199,14 @@
 // Start Our Menu Section
 .our-menu {
     .container {
+        padding-left: 25px;
+        padding-right: 25px;
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
             gap: 25px;
             @include media(mobile) {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             }
             .menu {
                 position: relative;
@@ -279,26 +280,29 @@
                         @include prefixer(transition, 0.5s, webkit moz ms o);
                     }
                     .icon {
-                        width: 80px;
-                        height: 80px;
-                        line-height: 80px;
+                        width: 65px;
+                        height: 65px;
+                        line-height: 65px;
+                        font-size: 35px;
                         margin: auto;
                         text-align: center;
-                        font-size: 45px;
                         background-color: $main-color;
                         outline: 5px solid rgba(255, 255, 255, 0.35);
                         @include prefixer(border-radius, 50%, webkit moz ms o);
                         @include media(mobile) {
-                            width: 65px;
-                            height: 65px;
-                            line-height: 65px;
-                            font-size: 35px;
+                            width: 45px;
+                            height: 45px;
+                            line-height: 45px;
+                            font-size: 25px;
                         }
                     }
                     span {
                         display: block;
-                        font-size: 35px;
-                        margin-top: 35px;
+                        font-size: 25px;
+                        margin-top: 30px;
+                        @include media(small) {
+                            font-size: 30px;
+                        }
                     }
                 }
                 &:hover .icon {
